@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Vue 响应式演示</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>自从你打开这个页面，已经过了{{ secondes}}秒。</p>
+            <button :disabled="btnDisabled">按钮</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    secondes: 0,
+                    btnDisabled: true
+                },
+                created() {
+                    setInterval(() => {
+                        this.secondes++;
+                        this.btnDisabled = !this.btnDisabled;
+                    }, 1000);
+                }
+            });
+        </script>
+    </body>
+</html>

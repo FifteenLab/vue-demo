@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Vue vi-for 演示</title>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="(name, index) in names">我叫{{name}} {{index}}</li>
+            </ul>
+            <ul>
+                <li v-for="n in 10">{{n}}</li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    names: ['张三', '李四', '王五', '赵六']
+                }
+            });
+        </script>
+    </body>
+</html>
