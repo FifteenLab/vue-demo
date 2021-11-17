@@ -24,6 +24,26 @@
                     }, 1000);
                 }
             });
+
+            const data = {
+                userId: 10
+            };
+
+            // 响应式原理
+            const storeData = {};
+            storeData.userId = data.userId
+
+            Object.defineProperty(data, "userId", {
+                get() {
+                    return storeData.userId
+                },
+                set(value) {
+                    console.log("User ID changed!");
+                    storeData.userId = value;
+                },
+                configurable: true,
+                enumerable: true
+            });
         </script>
     </body>
 </html>

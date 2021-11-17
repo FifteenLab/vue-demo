@@ -15,12 +15,16 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script>
-            new Vue({
+            const vm = new Vue({
                 el: '#app',
                 data: {
                     names: ['张三', '李四', '王五', '赵六']
                 }
             });
+            setTimeout(() => {
+                vm.names[1] = 'lisi';
+                vm.names.splice(2, 1, 'wangwu');
+            }, 1000)
         </script>
     </body>
 </html>

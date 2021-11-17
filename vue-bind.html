@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Vue vi-bind 演示</title>
+    </head>
+    <body>
+        <div id="app">
+            <button :type="buttonType" :disabled="buttonDisabled">测试按钮</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    buttonType: 'submit',
+                    buttonDisabled: 'true'
+                }
+            });
+        </script>
+    </body>
+</html>
