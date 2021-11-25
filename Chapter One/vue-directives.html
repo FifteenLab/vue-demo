@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>Vue 指令演示</title>
+    </header>
+    <body>
+        <div id="app">
+            <p v-blink="interval">Hello World</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            const vm = new Vue({
+                el: "#app",
+                data: {
+                    interval: 1000,
+                    blinkInt: undefined,
+                },
+                directives: {
+                    blink: {
+                        bind(el, binding) {
+                            console.log("bind el: ", el);
+                            console.log("bind binding: ", binding);
+                            this.blinkInt = setInterval(() => {
+                                el.style.visibility = el.style.visibility=='hidden' ? 'visible' : 'hidden';
+                            }, binding.value || 1000);
+                        },
+                        update(el, binding) {
+                            console.log("update el: ", el);
+                            console.log("update binding: ", binding);
+                            if (this.blinkInt) {
+                                clearInterval(this.blinkInt);
+                                let isVisible = true;
+                                this.blinkInt = setInterval(() => {
+                                    el.style.visibility = el.style.visibility=='hidden' ? 'visible' : 'hidden';
+                                }, binding.value || 1000);
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <header>
+        <title>Vue 监听器演示</title>
+    </header>
+    
+    <body>
+        <div id="app">
+            <p>当前数值：{{ count }}</p>
+            <p>用户姓名：{{ user.name }}</p>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            const vm = new Vue({
+                el: "#app",
+                data: {
+                    count: 10,
+                    user: {
+                        name: '张三'
+                    }
+                },
+                watch: {
+                    count(val, oldVal) {
+                        console.log("count changed");
+                        console.log("old value: " + oldVal + ", cur vlaue: " + val)
+                    },
+                    user: {
+                        handler(val, oldVal) {
+                            console.log("old value: " + oldVal.name + ", cur vlaue: " + val.name)
+                        },
+                        // 深度监听
+                        deep: true
+                    },
+                    'user.name'() {
+                        console.log("user name changed.");
+                    }
+                },
+                created() {
+                    setTimeout(() => {
+                        this.count = 20;
+                        this.user.name = "李四";
+                    }, 1000);
+                }
+            });
+        </script>
+    </body>
+</html>

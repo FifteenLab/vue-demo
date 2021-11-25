@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+    <header>
+        <title>Vue 过滤器演示</title>
+    </header>
+    <body>
+        <div id="app">
+            <p>键盘价格：{{ (keyboardPrice/100).toFixed(2) }}</p>
+            <p>M480价格：{{ keyboardPrice | formatPrice }}</p>
+            <p>M780价格：{{ keyboardPrice | formatPrice('$') }}</p>
+            <input type="text" :value="keyboardPrice | formatPrice('$')">
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            const vm = new Vue({
+                el: "#app",
+                data: {
+                    keyboardPrice: 17900,
+                },
+                filters: {
+                    formatPrice(val, symbol) {
+                        symbol = symbol || '￥';
+                        console.log("format price: " + val);
+                        return symbol + (val/100).toFixed(2);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

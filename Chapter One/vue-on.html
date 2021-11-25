@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>Vue 事件演示</title>
+    </header>
+    <body>
+        <div id="app">
+            <button @click="increase">单击 +1</button>
+            <a @click.prevent="increase">单击阻止A标签默认事件</a>
+
+            <!-- 捕获 -->
+            <div @click.capture="increase">
+                <!-- 阻止传播 -->
+                <button @click.stop="clickDiv">单击 +2</button>
+            </div>
+
+            <button @click.once="increase">单击（once） +1</button>
+
+            <!-- 只监听当前DOM事件 -->
+            <div @click.self="clickSelf">
+                <!-- 阻止传播 -->
+                <button @click.stop="clickDiv">单击 +2</button>
+                Div +5
+            </div>
+
+            <p>你已经单击了按钮 {{ counter }} 次。</p>
+
+            <form @keyup="handleKeyup">
+                <input type="text" value="">
+                <p>你按下了 {{ key }}</p>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            const vm = new Vue({
+                el: "#app",
+                data: {
+                    counter: 0,
+                    key: "",
+                },
+                methods: {
+                    increase(e) {
+                        console.log(e);
+                        this.counter++;
+                    },
+                    clickDiv(e) {
+                        console.log("click div",e);
+                        this.counter += 2;
+                    },
+                    clickSelf(e) {
+                        console.log("click self");
+                        this.counter +=3;
+                    },
+                    handleKeyup(e) {
+                        console.log("keyup", e);
+                        this.key = e.key;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
