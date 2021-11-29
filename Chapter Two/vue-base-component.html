@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>Vue 事件演示</title>
+    </header>
+    <body>
+        <div id="app">
+            <custom-button></custom-button>
+            <custom-menu></custom-menu>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            // 全局
+            Vue.component('custom-button', {
+                template: '<button>自定义按钮</button>'
+            });
+
+            const CustomMenu = {
+                template: '<p>自定义菜单</p>'
+            };
+            const vm = new Vue({
+                el: "#app",
+                components: {
+                    CustomMenu
+                }
+            });
+        </script>
+    </body>
+</html>
